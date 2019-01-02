@@ -2,9 +2,21 @@
 import subprocess
 import re
 import netifaces
+import optparse
 
-macAddress = input("input mac > ")
-interface = input("input interface > ")
+
+parser = optparse.OptionParser()
+parser.add_option("-i","--interface", dest="interface", help="Interface to change its Mac address")
+parser.add_option("-m","--mac", dest="new_mac", help="New Mac Address")
+
+(options, arguments) = parser.parse_args()
+
+interface = options.interface
+macAddress = options.new_mac
+
+# Using input()
+# macAddress = input("input mac > ")
+# interface = input("input interface > ")
 
 pattern = re.compile(r"^([0-9a-f]{2}[:-]){5}([0-9a-f]{2})$", re.IGNORECASE)
 if pattern.match(macAddress) and netifaces.AF_INET in netifaces.ifaddresses(interface):
