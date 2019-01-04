@@ -17,4 +17,6 @@ def scan(ip):
     # to get the summary of a packet use : packet.summary() or packet.show()
     # to get more info use : scapy.ls(type)
 
-scan("10.0.2.1/24")
+
+ip = input("Please Enter IP address or a subnet to scan: ")
+scan(ip)
